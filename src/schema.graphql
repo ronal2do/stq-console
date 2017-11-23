@@ -1,0 +1,1304 @@
+# Represents AdminUser
+type AdminUser implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Admin Complete Name
+  name: String
+
+  # Admin User Hashed Password
+  password: String
+  email: String
+  active: Boolean
+
+  # Roles that this user can perform
+  roles: String
+  createdAt: String
+  updatedAt: String
+}
+
+input AdminUserAddInput {
+  name: String!
+  password: String!
+  email: String!
+  active: Boolean
+  clientMutationId: String
+}
+
+type AdminUserAddPayload {
+  adminUserEdge: AdminUserEdge
+  me: User
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type AdminUserConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [AdminUserEdge]
+  count: Int
+}
+
+input AdminUserDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type AdminUserDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type AdminUserEdge {
+  # The item at the end of the edge
+  node: AdminUser
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input AdminUserEditInput {
+  id: ID!
+  name: String!
+  password: String!
+  email: String!
+  active: Boolean
+  clientMutationId: String
+}
+
+type AdminUserEditPayload {
+  adminUser: AdminUser
+  error: String
+  clientMutationId: String
+}
+
+input AdminUserLoginInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type AdminUserLoginPayload {
+  me: User
+  token: String
+  error: String
+  clientMutationId: String
+}
+
+# Represents City
+type City implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Name of city
+  name: String
+  createdAt: String
+  updatedAt: String
+}
+
+input CityAddInput {
+  name: String!
+  clientMutationId: String
+}
+
+type CityAddPayload {
+  cityEdge: CityEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type CityConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [CityEdge]
+  count: Int
+}
+
+input CityDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type CityDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type CityEdge {
+  # The item at the end of the edge
+  node: City
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input CityEditInput {
+  id: ID!
+  name: String!
+  clientMutationId: String
+}
+
+type CityEditPayload {
+  city: City
+  error: String
+  clientMutationId: String
+}
+
+# Represents Event
+type Event implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Title of event, og: Campeonato de Judô, final de futebol
+  title: String
+
+  # Day of start the game
+  date: String
+
+  # Hour of start the game
+  start: String
+
+  # Name of place, og: Ginásio do Ibirapuera
+  location: String
+
+  # Host city of the event
+  city: String
+
+  # Local of game
+  address: String
+
+  # Modality
+  sport: String
+
+  # Modality
+  category: String
+
+  # Modality
+  additional: String
+
+  # Name of teams, for all not complet
+  team: [String]
+
+  # Latitude
+  lat: String
+
+  # Latitude
+  lng: String
+  createdAt: String
+  updatedAt: String
+
+  # place this make event
+  place: EventPlace
+
+  # User has Liked this event?
+  hasEventLiked: Boolean
+}
+
+input EventAddInput {
+  title: String!
+  date: String!
+  start: String!
+  location: String
+  city: String
+  address: String
+  category: String
+  additional: String
+  sport: String!
+  team: [String]
+  place: ID
+  clientMutationId: String
+}
+
+type EventAddPayload {
+  eventEdge: EventEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type EventConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [EventEdge]
+  count: Int
+}
+
+input EventDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type EventDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type EventEdge {
+  # The item at the end of the edge
+  node: Event
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input EventEditInput {
+  id: ID!
+  title: String!
+  date: String!
+  sport: String!
+  team: [String]
+  clientMutationId: String
+}
+
+type EventEditPayload {
+  event: Event
+  error: String
+  clientMutationId: String
+}
+
+# Represents EventPlace
+type EventPlace implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # name of place
+  location: String
+
+  # city
+  city: String
+
+  # address
+  address: String
+
+  # lat
+  lat: String
+
+  # lng
+  lng: String
+
+  # automatic generated
+  formattedAdress: String
+  createdAt: String
+  updatedAt: String
+}
+
+input EventPlaceAddInput {
+  location: String
+  city: String
+  address: String
+  lat: String
+  lng: String
+  formattedAdress: String
+  clientMutationId: String
+}
+
+type EventPlaceAddPayload {
+  eventPlaceEdge: EventPlaceEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type EventPlaceConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [EventPlaceEdge]
+  count: Int
+}
+
+input EventPlaceDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type EventPlaceDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type EventPlaceEdge {
+  # The item at the end of the edge
+  node: EventPlace
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input EventPlaceEditInput {
+  id: ID!
+  location: String
+  city: String
+  address: String
+  lat: String
+  lng: String
+  formattedAdress: String
+  clientMutationId: String
+}
+
+type EventPlaceEditPayload {
+  eventPlace: EventPlace
+  error: String
+  clientMutationId: String
+}
+
+# Represents Gallery
+type Gallery implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Title of image
+  title: String
+
+  # url of image
+  image: String
+  createdAt: String
+  updatedAt: String
+}
+
+input GalleryAddInput {
+  title: String
+  image: String
+  clientMutationId: String
+}
+
+type GalleryAddPayload {
+  galleryEdge: GalleryEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type GalleryConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [GalleryEdge]
+  count: Int
+}
+
+input GalleryDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type GalleryDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type GalleryEdge {
+  # The item at the end of the edge
+  node: Gallery
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input GalleryEditInput {
+  id: ID!
+  title: String
+  image: String
+  clientMutationId: String
+}
+
+type GalleryEditPayload {
+  gallery: Gallery
+  error: String
+  clientMutationId: String
+}
+
+# Represents Like
+type Like implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # User that created this like
+  userId: User
+
+  # Event that owns this like
+  event: Event
+  createdAt: String
+  updatedAt: String
+}
+
+# A connection to a list of items.
+type LikeConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [LikeEdge]
+
+  # Total number of count
+  count: Int
+}
+
+# An edge in a connection.
+type LikeEdge {
+  # The item at the end of the edge
+  node: Like
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+# Represents Location
+type Location implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Alojamento, Locais de competições
+  locationType: String
+
+  # Title of video
+  city: String
+
+  # id of youtubee
+  address: String
+
+  # id of youtubee
+  phone: String
+
+  # name of place
+  location: String
+
+  # Title of event, og: Campeonato de Judô, final de futebol
+  lat: String
+
+  # Title of event, og: Campeonato de Judô, final de futebol
+  lng: String
+
+  # Title of event, og: Campeonato de Judô, final de futebol
+  formattedAdress: String
+
+  # Name of teams, for all not complet
+  team: [String]
+  createdAt: String
+  updatedAt: String
+}
+
+input LocationAddInput {
+  locationType: String
+  city: String
+  address: String
+  phone: String
+  location: String
+  lat: String
+  lng: String
+  formattedAdress: String
+  team: [String]
+  clientMutationId: String
+}
+
+type LocationAddPayload {
+  locationEdge: LocationEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type LocationConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [LocationEdge]
+  count: Int
+}
+
+input LocationDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type LocationDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type LocationEdge {
+  # The item at the end of the edge
+  node: Location
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input LocationEditInput {
+  id: ID!
+  phone: String
+  location: String
+  formattedAdress: String
+  team: [String]
+  clientMutationId: String
+}
+
+type LocationEditPayload {
+  location: Location
+  error: String
+  clientMutationId: String
+}
+
+# Represents Message
+type Message implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Title of Comunicated
+  title: String
+
+  # Content of message
+  message: String
+
+  # Path of pdf our other asset
+  file: String
+  createdAt: String
+  updatedAt: String
+}
+
+input MessageAddInput {
+  title: String!
+  message: String
+  file: String
+  clientMutationId: String
+}
+
+type MessageAddPayload {
+  messageEdge: MessageEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type MessageConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [MessageEdge]
+  count: Int
+}
+
+input MessageDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type MessageDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type MessageEdge {
+  # The item at the end of the edge
+  node: Message
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input MessageEditInput {
+  id: ID!
+  title: String!
+  message: String
+  file: String
+  clientMutationId: String
+}
+
+type MessageEditPayload {
+  message: Message
+  error: String
+  clientMutationId: String
+}
+
+# Represents Modality
+type Modality implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Name of the Modality
+  name: String
+
+  # Image Path
+  path: String
+  createdAt: String
+  updatedAt: String
+}
+
+input ModalityAddInput {
+  name: String!
+  path: String
+  clientMutationId: String
+}
+
+type ModalityAddPayload {
+  modalityEdge: ModalityEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type ModalityConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [ModalityEdge]
+}
+
+input ModalityDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type ModalityDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type ModalityEdge {
+  # The item at the end of the edge
+  node: Modality
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input ModalityEditInput {
+  id: ID!
+  name: String!
+  path: String
+  clientMutationId: String
+}
+
+type ModalityEditPayload {
+  modality: Modality
+  error: String
+  clientMutationId: String
+}
+
+type Mutation {
+  AdminUserLogin(input: AdminUserLoginInput!): AdminUserLoginPayload
+  AdminUserAdd(input: AdminUserAddInput!): AdminUserAddPayload
+  AdminUserEdit(input: AdminUserEditInput!): AdminUserEditPayload
+  AdminUserDelete(input: AdminUserDeleteInput!): AdminUserDeletePayload
+  EventAdd(input: EventAddInput!): EventAddPayload
+  EventEdit(input: EventEditInput!): EventEditPayload
+  EventDelete(input: EventDeleteInput!): EventDeletePayload
+  LocationAdd(input: LocationAddInput!): LocationAddPayload
+  LocationEdit(input: LocationEditInput!): LocationEditPayload
+  LocationDelete(input: LocationDeleteInput!): LocationDeletePayload
+  NewsAdd(input: NewsAddInput!): NewsAddPayload
+  NewsEdit(input: NewsEditInput!): NewsEditPayload
+  NewsDelete(input: NewsDeleteInput!): NewsDeletePayload
+  RankingAdd(input: RankingAddInput!): RankingAddPayload
+  RankingEdit(input: RankingEditInput!): RankingEditPayload
+  RankingDelete(input: RankingDeleteInput!): RankingDeletePayload
+  MessageAdd(input: MessageAddInput!): MessageAddPayload
+  MessageEdit(input: MessageEditInput!): MessageEditPayload
+  MessageDelete(input: MessageDeleteInput!): MessageDeletePayload
+  ResultAdd(input: ResultAddInput!): ResultAddPayload
+  ResultEdit(input: ResultEditInput!): ResultEditPayload
+  ResultDelete(input: ResultDeleteInput!): ResultDeletePayload
+  EventPlaceAdd(input: EventPlaceAddInput!): EventPlaceAddPayload
+  EventPlaceEdit(input: EventPlaceEditInput!): EventPlaceEditPayload
+  EventPlaceDelete(input: EventPlaceDeleteInput!): EventPlaceDeletePayload
+  CityAdd(input: CityAddInput!): CityAddPayload
+  CityEdit(input: CityEditInput!): CityEditPayload
+  CityDelete(input: CityDeleteInput!): CityDeletePayload
+  VideoAdd(input: VideoAddInput!): VideoAddPayload
+  VideoEdit(input: VideoEditInput!): VideoEditPayload
+  VideoDelete(input: VideoDeleteInput!): VideoDeletePayload
+  ModalityAdd(input: ModalityAddInput!): ModalityAddPayload
+  ModalityEdit(input: ModalityEditInput!): ModalityEditPayload
+  ModalityDelete(input: ModalityDeleteInput!): ModalityDeletePayload
+  GalleryAdd(input: GalleryAddInput!): GalleryAddPayload
+  GalleryEdit(input: GalleryEditInput!): GalleryEditPayload
+  GalleryDelete(input: GalleryDeleteInput!): GalleryDeletePayload
+  TextAdd(input: TextAddInput!): TextAddPayload
+  TextEdit(input: TextEditInput!): TextEditPayload
+}
+
+# Represents News
+type News implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Title of event, og: Campeonato de Judô, final de futebol
+  title: String
+
+  # Day of start the game
+  media: String
+
+  # Notícias ou boletins
+  video: String
+
+  # Hour of start the game
+  content: String
+  createdAt: String
+  updatedAt: String
+}
+
+input NewsAddInput {
+  title: String!
+  media: String
+  video: String
+  content: String
+  clientMutationId: String
+}
+
+type NewsAddPayload {
+  newsEdge: NewsEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type NewsConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [NewsEdge]
+  count: Int
+}
+
+input NewsDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type NewsDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type NewsEdge {
+  # The item at the end of the edge
+  node: News
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input NewsEditInput {
+  id: ID!
+  title: String!
+  media: String
+  video: String
+  content: String
+  clientMutationId: String
+}
+
+type NewsEditPayload {
+  news: News
+  error: String
+  clientMutationId: String
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
+# The root of all... queries
+type Query {
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+  me: AdminUser
+  adminUser(id: ID!): AdminUser
+  adminUsers(after: String, first: Int, before: String, last: Int, search: String): AdminUserConnection
+  user(id: ID!): User
+  users(after: String, first: Int, before: String, last: Int, search: String): UserConnection
+  like(id: ID!): Like
+  likes(after: String, first: Int, before: String, last: Int, search: String): LikeConnection
+  event(id: ID!): Event
+  events(after: String, first: Int, before: String, last: Int, search: String): EventConnection
+  place(id: ID!): Location
+  places(after: String, first: Int, before: String, last: Int, search: String): LocationConnection
+  news(id: ID!): News
+  allNews(after: String, first: Int, before: String, last: Int, search: String): NewsConnection
+  ranking(id: ID!): Ranking
+  rankings(after: String, first: Int, before: String, last: Int, search: String, division: Int): RankingConnection
+  city(id: ID!): City
+  cities(after: String, first: Int, before: String, last: Int, search: String): CityConnection
+  text(id: ID!): Text
+  texts(after: String, first: Int, before: String, last: Int, search: String): TextConnection
+  video(id: ID!): Video
+  videos(after: String, first: Int, before: String, last: Int, search: String): VideoConnection
+  modality(id: ID!): Modality
+  modalitys(after: String, first: Int, before: String, last: Int, search: String): ModalityConnection
+  message(id: ID!): Message
+  messages(after: String, first: Int, before: String, last: Int, search: String): MessageConnection
+  result(id: ID!): Result
+  results(after: String, first: Int, before: String, last: Int, search: String): ResultConnection
+  eventPlace(id: ID!): EventPlace
+  eventPlaces(after: String, first: Int, before: String, last: Int, search: String): EventPlaceConnection
+  gallery(id: ID!): Gallery
+  galleries(after: String, first: Int, before: String, last: Int, search: String): GalleryConnection
+}
+
+# Represents Ranking
+type Ranking implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # City name
+  city: City
+
+  # Number of points
+  points: Float
+
+  # Classification
+  division: Int
+  createdAt: String
+  updatedAt: String
+}
+
+input RankingAddInput {
+  city: ID
+  points: Float
+  division: Int
+  clientMutationId: String
+}
+
+type RankingAddPayload {
+  rankingEdge: RankingEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type RankingConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [RankingEdge]
+  count: Int
+}
+
+input RankingDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type RankingDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type RankingEdge {
+  # The item at the end of the edge
+  node: Ranking
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input RankingEditInput {
+  id: ID!
+  points: Int
+  division: Int
+  clientMutationId: String
+}
+
+type RankingEditPayload {
+  ranking: Ranking
+  error: String
+  clientMutationId: String
+}
+
+# Represents Result
+type Result implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Title of Comunicated
+  title: String
+
+  # sport of result
+  sport: String
+
+  # Content of result
+  content: String
+  createdAt: String
+  updatedAt: String
+}
+
+input ResultAddInput {
+  title: String!
+  sport: String
+  content: String
+  clientMutationId: String
+}
+
+type ResultAddPayload {
+  resultEdge: ResultEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type ResultConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [ResultEdge]
+  count: Int
+}
+
+input ResultDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type ResultDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type ResultEdge {
+  # The item at the end of the edge
+  node: Result
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input ResultEditInput {
+  id: ID!
+  title: String!
+  sport: String
+  content: String
+  clientMutationId: String
+}
+
+type ResultEditPayload {
+  result: Result
+  error: String
+  clientMutationId: String
+}
+
+# Represents Text
+type Text implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # APP page to show this text
+  location: String
+
+  # text content
+  content: String
+  createdAt: String
+  updatedAt: String
+}
+
+input TextAddInput {
+  location: String
+  content: Int
+  clientMutationId: String
+}
+
+type TextAddPayload {
+  textEdge: TextEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type TextConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [TextEdge]
+  count: Int
+}
+
+# An edge in a connection.
+type TextEdge {
+  # The item at the end of the edge
+  node: Text
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input TextEditInput {
+  id: ID!
+  location: String
+  content: Int
+  clientMutationId: String
+}
+
+type TextEditPayload {
+  text: Text
+  error: String
+  clientMutationId: String
+}
+
+# User data
+type User implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+  name: String
+  email: String
+  active: Boolean
+  city: String
+
+  # Like author this make session
+  likes: LikeConnection
+
+  # return true if user has no password, logged by a social account
+  hasPassword: Boolean
+  push: Boolean
+
+  # data about social accounts of this user
+  socialAccount: UserSocialAccount
+  notifications(after: String, first: Int, before: String, last: Int): UserNotificationConnection
+}
+
+# A connection to a list of items.
+type UserConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [UserEdge]
+  count: Int
+}
+
+# An edge in a connection.
+type UserEdge {
+  # The item at the end of the edge
+  node: User
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+# Represents UserNotification
+type UserNotification implements Node {
+  # The ID of an object
+  id: ID!
+
+  # User that will receive this push
+  user: User
+
+  # The title of the notification
+  title: String
+
+  # The body of the notification
+  body: String
+
+  # Deeplinking
+  url: String
+
+  # event name for firebase analytics
+  firebaseAnalytics: String
+
+  # when this notification was sent
+  sentAt: String
+
+  # when this notification was opened
+  openedAt: String
+  createdAt: String
+  updatedAt: String
+}
+
+# A connection to a list of items.
+type UserNotificationConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [UserNotificationEdge]
+}
+
+# An edge in a connection.
+type UserNotificationEdge {
+  # The item at the end of the edge
+  node: UserNotification
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+# Represents UserSocialAccount
+type UserSocialAccount implements Node {
+  # The ID of an object
+  id: ID!
+  user: User
+  active: Boolean
+  provider: String
+
+  # User ID in the provider
+  uid: String
+
+  # User ID in the provider ecosystem
+  providerUserId: String
+  gender: String
+  email: String
+  accessToken: String
+
+  # Date that the access token expires
+  accessTokenExpires: String
+  username: String
+  name: String
+  nameFirst: String
+  nameLast: String
+  verified: Boolean
+  locale: String
+  profileURL: String
+  profileImage: String
+  timezone: String
+
+  # Payload with data received from the Provider in unscructured format
+  rawData: String
+  createdAt: String
+  updatedAt: String
+
+  # return true if the user has facebook account linked
+  facebook: Boolean
+}
+
+# Represents Video
+type Video implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+
+  # Title of video
+  title: String
+
+  # id of youtubee
+  urlid: String
+
+  # full url
+  url: String
+  createdAt: String
+  updatedAt: String
+}
+
+input VideoAddInput {
+  title: String
+  urlid: String
+  url: String
+  clientMutationId: String
+}
+
+type VideoAddPayload {
+  videoEdge: VideoEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type VideoConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [VideoEdge]
+  count: Int
+}
+
+input VideoDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type VideoDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type VideoEdge {
+  # The item at the end of the edge
+  node: Video
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input VideoEditInput {
+  id: ID!
+  title: String
+  clientMutationId: String
+}
+
+type VideoEditPayload {
+  video: Video
+  error: String
+  clientMutationId: String
+}
