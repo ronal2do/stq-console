@@ -119,7 +119,7 @@ class AppToolbar extends React.Component {
             <Button color="#392C70">MONEY TRANSFER</Button>
             <NavLink href="/getting-started">Hello, Admin</NavLink>
             <NavLink href="/getting-started">Messages</NavLink>
-            <NavLinkLast href="/about">Logout</NavLinkLast>
+            <NavLinkLast href="/about">Logout icon power-switch</NavLinkLast>
           </Section>
         </Row>
       </Header>
@@ -130,7 +130,7 @@ class AppToolbar extends React.Component {
 export default createFragmentContainer(
   AppToolbar,
   graphql`
-    fragment AppToolbar_me on AdminUser {
+    fragment AppToolbar_me on User {
       name
     }
   `,

@@ -12,7 +12,7 @@ import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 function fetchQuery(operation, variables, cacheConfig, uploadables) {
   return fetch(
     process.env.REACT_APP_API
-      ? `${process.env.REACT_APP_API}/console/graphql`
+      ? `${process.env.REACT_APP_API}/graphql`
       : 'https://graphql-demo.kriasoft.com/',
     {
       method: 'POST',

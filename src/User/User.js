@@ -7,33 +7,32 @@
 
 import React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
-import type { Event_event } from './__generated__/Event_event.graphql';
+import type { User_user } from './__generated__/User_user.graphql';
 
-import s from './Event.css';
+import s from './User.css';
 
-class Event extends React.Component {
+class User extends React.Component {
   props: {
-    event: Event_event,
+    user: User_user,
   };
 
   render() {
-    const event = this.props.event || {};
+    const user = this.props.user || {};
     return (
       <article className={s.root}>
-        <h1>{event.title}</h1>
-        <content>{event.address}</content>
+        <h1>{user.title}</h1>
+        <content>{user.address}</content>
       </article>
     );
   }
 }
 
 export default createFragmentContainer(
-  Event,
+  User,
   graphql`
-    fragment Event_event on Event {
+    fragment User_user on User {
       id
-      title
-      address
+      name
     }
   `,
 );

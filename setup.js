@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-var fetch = require('node-fetch');
+const fetch = require('node-fetch');
 const {
   buildClientSchema,
   introspectionQuery,
@@ -72,17 +72,9 @@ if (!text.includes('babel-plugin-transform-export-extensions')) {
 // Download the GraphQL schema
 // -----------------------------------------------------------------------------
 if (process.argv.includes('--download-schema')) {
-  // file = fs.createWriteStream('./src/schema.graphql');
-  // https.get('https://graphql-demo.kriasoft.com/schema', resp => {
-  //   if (resp.statusCode === 200) {
-  //     resp.pipe(file);
-  //   } else {
-  //     throw new Error('Failed to download the schema.');
-  //   }
-  // });
   console.log(introspectionQuery);
 
-  fetch(process.env.REACT_APP_API, {
+  fetch('http://localhost:5000/graphql', {
     method: 'POST',
     headers: {
       Accept: 'application/json',

@@ -18,24 +18,24 @@ const routes = [
     path: '/',
     query: graphql`query routerHomeQuery {
       me { ...App_me }
-      events(first: 50) { ...Home_events }
+      users(first: 50) { ...Home_users }
     }`, // prettier-ignore
     components: () => [import(/* webpackChunkName: 'home' */ './Home')],
     render: ([Home], data) => ({
       title: 'Home page',
-      body: <Home events={data.events} />,
+      body: <Home users={data.users} />,
     }),
   },
   {
-    path: '/event-:id',
-    query: graphql`query routerEventQuery($id: ID!) {
+    path: '/user-:id',
+    query: graphql`query routerUserQuery($id: ID!) {
       me { ...App_me }
-      event: node(id: $id) { ...Event_event }
+      user: node(id: $id) { ...User_user }
     }`, // prettier-ignore
-    components: () => [import(/* webpackChunkName: 'home' */ './Event')],
-    render: ([Event], data) => ({
-      title: data.title,
-      body: <Event event={data.event} />,
+    components: () => [import(/* webpackChunkName: 'home' */ './User')],
+    render: ([User], data) => ({
+      title: data.name,
+      body: <User user={data.user} />,
     }),
   },
   {

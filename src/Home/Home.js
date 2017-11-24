@@ -8,20 +8,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { graphql, createFragmentContainer } from 'react-relay';
-import type { Home_events } from './__generated__/Home_events.graphql';
+import type { Home_users } from './__generated__/Home_users.graphql';
 import { Page, Card } from '../components';
 import Link from '../Link';
 
-const EventList = styled.ul`padding: 0;`;
+const UserList = styled.ul`padding: 0;`;
 
-const Event = styled.li`
+const User = styled.li`
   padding-bottom: 0.5em;
   list-style: none;
 `;
 
 class Home extends React.Component {
   props: {
-    events: Home_events,
+    users: Home_users,
   };
 
   render() {
@@ -34,14 +34,14 @@ class Home extends React.Component {
       >
         <div>
           <Card>
-            <EventList>
-              {this.props.events &&
-                this.props.events.edges.map(({ node: event }) => (
-                  <Event key={event.id}>
-                    <Link href={`/event-${event.id}`}>{event.title}</Link>
-                  </Event>
+            <UserList>
+              {this.props.users &&
+                this.props.users.edges.map(({ node: user }) => (
+                  <User key={user.id}>
+                    <Link href={`/user-${user.id}`}>{user.name}</Link>
+                  </User>
                 ))}
-            </EventList>
+            </UserList>
           </Card>
         </div>
       </Page>
@@ -52,12 +52,12 @@ class Home extends React.Component {
 export default createFragmentContainer(
   Home,
   graphql`
-    fragment Home_events on EventConnection {
+    fragment Home_users on UserConnection {
       count
       edges {
         node {
           id
-          title
+          name
         }
       }
     }

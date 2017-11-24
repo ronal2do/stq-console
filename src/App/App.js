@@ -16,7 +16,7 @@ import AppRenderer from './AppRenderer';
 
 // eslint-disable-next-line no-unused-expressions
 graphql`
-  fragment App_me on AdminUser {
+  fragment App_me on User {
     ...AppToolbar_me
   }
 `;

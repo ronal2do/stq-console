@@ -9106,7 +9106,7 @@ unique-string@^1.0.0:
   dependencies:
     crypto-random-string "^1.0.0"
 
-universal-router@^3.2.0:
+universal-router@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/universal-router/-/universal-router-3.2.0.tgz#4590ee42f55e2a08188c632070d90675bb2fa40f"
   dependencies:

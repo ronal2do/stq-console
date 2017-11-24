@@ -121,7 +121,6 @@ class AppRenderer extends React.Component<any, Props, State> {
           <AppSidebar />
           <Content>{this.state.body || <p>Loading...</p>}</Content>
         </Main>
-        {/* <AppFooter /> */}
       </div>
     );
   }
