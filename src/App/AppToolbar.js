@@ -9,7 +9,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-import { Button } from '../components';
+import { Button, Icon } from '../components';
 import Link from '../Link';
 import AppLogo from './AppLogo';
 import type { AppToolbar_me } from './__generated__/AppToolbar_me.graphql';
@@ -25,7 +25,7 @@ const Header = styled.header`
   background-color: white;
   justify-content: space-between;
   border-bottom: 1px solid #f2f2f2;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.shadow};
 `;
 
 const Row = styled.div`
@@ -60,7 +60,7 @@ const TitleLink = styled(Link)`
   padding: 10px;
   font-size: 1em;
   line-height: 1.5rem;
-  color: #922c88;
+  color: ${props => props.theme.main};
   text-decoration: none;
   text-overflow: ellipsis;
   justify-content: center;
@@ -74,7 +74,7 @@ const TitleLink = styled(Link)`
   &.title:active,
   &.title:hover,
   &.title:visited {
-    color: #922c88;
+    color: ${props => props.theme.main};
   }
 `;
 
@@ -95,8 +95,18 @@ const NavLink = styled(Link)`
 
 const NavLinkLast = styled(NavLink)`
   margin-right: 24px;
+  display: flex;
+  margin-right: 24px;
+  align-items: center;
+  justify-content: center;
+
   @media (max-width: 599px) {
     margin-right: 16px;
+  }
+
+  > span: {
+    margin-bottom: 4px;
+    margin-left: 4px;
   }
 `;
 
@@ -119,7 +129,12 @@ class AppToolbar extends React.Component {
             <Button color="#392C70">MONEY TRANSFER</Button>
             <NavLink href="/getting-started">Hello, Admin</NavLink>
             <NavLink href="/getting-started">Messages</NavLink>
-            <NavLinkLast href="/about">Logout icon power-switch</NavLinkLast>
+            <NavLinkLast href="/about">
+              Logout{' '}
+              <span>
+                <Icon icon="power-switch" size={24} />
+              </span>
+            </NavLinkLast>
           </Section>
         </Row>
       </Header>

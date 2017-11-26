@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 300ms linear;
+  transition: ${props => props.theme.transition};
   cursor: pointer;
   border-right: 2px solid white;
   flex-direction: column;
@@ -29,7 +29,7 @@ const Link = styled.a`
   text-transform: uppercase;
   font-weight: 700;
   display: flex;
-  transition: all 300ms linear;
+  transition: ${props => props.theme.transition};
   flex-direction: column;
   align-items: center;
   justify-content: center;

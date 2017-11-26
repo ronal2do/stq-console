@@ -9,7 +9,7 @@ const Wrapper = styled.div`
       ? `linear-gradient(to right, ${props.color} 0%, ${props.gradient}  100%)`
       : props.color ? props.color : '#ffffff'};
   border: 0 solid #f8f8f8;
-  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.shadow};
   border-radius: 8px;
   padding: 30px;
 `;

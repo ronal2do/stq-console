@@ -9,7 +9,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql, createFragmentContainer } from 'react-relay';
 import type { Home_users } from './__generated__/Home_users.graphql';
-import { Page, Card, Chart } from '../components';
+import { Page, Card } from '../components';
 import Link from '../Link';
 
 const UserList = styled.ul`padding: 0;`;
@@ -17,11 +17,6 @@ const UserList = styled.ul`padding: 0;`;
 const User = styled.li`
   padding-bottom: 0.5em;
   list-style: none;
-`;
-
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: row;
 `;
 
 class Home extends React.Component {
@@ -32,13 +27,13 @@ class Home extends React.Component {
   render() {
     return (
       <Page
-        title="Dashboard"
+        title="Welcome to React Static Boilerplate"
         subHeading="Welcome to React Static Boilerplate"
         action={() => console.log('home action')}
         actionTitle="+ ADD MODULE"
       >
-        <FlexContainer>
-          <Card flex={20}>
+        <div>
+          <Card>
             <UserList>
               {this.props.users &&
                 this.props.users.edges.map(({ node: user }) => (
@@ -48,11 +43,7 @@ class Home extends React.Component {
                 ))}
             </UserList>
           </Card>
-          <div style={{ flex: 1 }} />
-          <Card flex={20}>
-            <Chart title="My Awesome chart" />
-          </Card>
-        </FlexContainer>
+        </div>
       </Page>
     );
   }

@@ -20,7 +20,7 @@ const Content = styled.div`
   background-color: white;
   position: fixed;
   height: calc(100% - 90px);
-  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.shadow};
 `;
 
 const Separator = styled.span`

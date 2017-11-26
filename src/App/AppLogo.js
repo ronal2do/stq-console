@@ -8,13 +8,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const color = '#922c88';
-
-const Circle = styled('circle')`fill: ${color};`;
+const Circle = styled('circle')`fill: ${props => props.theme.main};`;
 
 const Path = styled('path')`
   fill: none;
-  stroke: ${color};
+  stroke: ${props => props.theme.main};
   stroke-width: 144.7456;
   stroke-miterlimit: 10;
 `;

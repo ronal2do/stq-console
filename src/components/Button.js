@@ -12,7 +12,7 @@ const ButtonWrapper = styled.button`
   border-radius: 26px;
   padding: 10px 16px;
   height: 34px;
-  transition: all 300ms linear;
+  transition: ${props => props.theme.transition};
   cursor: pointer;
   color: ${props => (props.color ? '#fff' : '#000')};
 
@@ -20,7 +20,6 @@ const ButtonWrapper = styled.button`
   &:hover {
     box-shadow: none;
     transform: translateY(-2px);
-    0px 2px 20px 0px rgba(0,0,0,0.1);
   }
 
   &:focus,

@@ -9,9 +9,11 @@ const Wrapper = styled.div`
       ? `linear-gradient(to right, ${props.color} 0%, ${props.gradient}  100%)`
       : props.color ? props.color : '#ffffff'};
   border: 0 solid #f8f8f8;
-  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.shadow};
   border-radius: 8px;
-  padding: 30px;
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  ${props => props.flex && `flex: ${props.flex};`};
 `;
 
 type Props = {
@@ -20,8 +22,8 @@ type Props = {
   children: React.Element,
 };
 
-const Card = ({ color, gradient, children }) => (
-  <Wrapper color={color} gradient={gradient}>
+const Card = ({ color, gradient, children, flex }) => (
+  <Wrapper color={color} gradient={gradient} flex={flex}>
     {children}
   </Wrapper>
 );
