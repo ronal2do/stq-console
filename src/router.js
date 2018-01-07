@@ -30,9 +30,9 @@ const routes = [
     path: '/user-:id',
     query: graphql`query routerUserQuery($id: ID!) {
       me { ...App_me }
-      user: node(id: $id) { ...User_user }
+      user(id: $id) { ...User_user }
     }`, // prettier-ignore
-    components: () => [import(/* webpackChunkName: 'home' */ './User')],
+    components: () => [import(/* webpackChunkName: 'user' */ './User')],
     render: ([User], data) => ({
       title: data.name,
       body: <User user={data.user} />,

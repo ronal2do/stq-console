@@ -1,3 +1,180 @@
+# Represents AdminUser
+type AdminUser implements Node {
+  # The ID of an object
+  id: ID!
+  _id: String
+  name: String
+  password: String
+  email: String
+  active: Boolean
+  createdAt: String
+  updatedAt: String
+}
+
+input AdminUserAddInput {
+  name: String!
+  password: String
+  email: String
+  active: Boolean
+  clientMutationId: String
+}
+
+type AdminUserAddPayload {
+  adminUserEdge: AdminUserEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type AdminUserConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [AdminUserEdge]
+  count: Int
+}
+
+input AdminUserDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type AdminUserDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type AdminUserEdge {
+  # The item at the end of the edge
+  node: AdminUser
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input AdminUserEditInput {
+  id: ID!
+  name: String!
+  password: String
+  email: String
+  active: Boolean
+  clientMutationId: String
+}
+
+type AdminUserEditPayload {
+  adminUser: AdminUser
+  error: String
+  clientMutationId: String
+}
+
+input AdminUserLoginInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type AdminUserLoginPayload {
+  me: AdminUser
+  token: String
+  error: String
+  clientMutationId: String
+}
+
+# Represents Alert
+type Alert implements Node {
+  # The ID of an object
+  id: ID!
+
+  # priority of the alert, has green, yellow our red
+  priority: String
+
+  # visualization of the alert, has accept, pending our reject
+  avaible: String
+
+  # address approximate of the alert
+  address: String
+
+  # lat approximate of the alert
+  lat: Float
+
+  # lng approximate of the alert
+  lng: Float
+
+  # Approximate alert CEP 
+  cep: String
+
+  # Type of the alert, has alagamento, deslize, colisão, etc...
+  type: String
+  createdAt: String
+  updatedAt: String
+}
+
+input AlertAddInput {
+  priority: String!
+  avaible: String
+  lat: Float
+  lng: Float
+  type: String
+  clientMutationId: String
+}
+
+type AlertAddPayload {
+  alertEdge: AlertEdge
+  error: String
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type AlertConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [AlertEdge]
+  count: Int
+}
+
+input AlertDeleteInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type AlertDeletePayload {
+  deletedID: String
+  error: String
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type AlertEdge {
+  # The item at the end of the edge
+  node: Alert
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input AlertEditInput {
+  id: ID!
+  priority: String!
+  avaible: String
+  address: String
+  lat: String
+  lng: String
+  cep: String
+  type: String
+  clientMutationId: String
+}
+
+type AlertEditPayload {
+  alert: Alert
+  error: String
+  clientMutationId: String
+}
+
 input ChangePasswordInput {
   oldPassword: String!
 
@@ -12,6 +189,46 @@ type ChangePasswordPayload {
   clientMutationId: String
 }
 
+type City {
+  id: ID
+  name: String
+  country: String
+  population: Int
+  coord: Coordinates
+}
+
+type Clouds {
+  all: Int
+}
+
+type Coordinates {
+  lon: Float
+  lat: Float
+}
+
+type Feature {
+  id: String
+  type: String
+  geometry: Geometry
+  properties: Properties
+}
+
+type Geometry {
+  type: String
+  coordinates: [Float]
+}
+
+type List {
+  dt: Int
+  main: Main
+  weather: [WeatherList]
+  clouds: Clouds
+  rain: Rain
+  wind: Wind
+  sys: Sys
+  dt_txt: String
+}
+
 input LoginEmailInput {
   email: String!
   password: String!
@@ -24,10 +241,30 @@ type LoginEmailPayload {
   clientMutationId: String
 }
 
+type Main {
+  temp: Float
+  temp_min: Float
+  temp_max: Float
+  temp_kf: Float
+  temp_f: Float
+  temp_c: Float
+  pressure: Float
+  sea_level: Float
+  grnd_level: Float
+  humidity: Int
+}
+
 type Mutation {
   LoginEmail(input: LoginEmailInput!): LoginEmailPayload
   RegisterEmail(input: RegisterEmailInput!): RegisterEmailPayload
   ChangePassword(input: ChangePasswordInput!): ChangePasswordPayload
+  AdminUserLogin(input: AdminUserLoginInput!): AdminUserLoginPayload
+  AdminUserAdd(input: AdminUserAddInput!): AdminUserAddPayload
+  AdminUserEdit(input: AdminUserEditInput!): AdminUserEditPayload
+  AdminUserDelete(input: AdminUserDeleteInput!): AdminUserDeletePayload
+  AlertAdd(input: AlertAddInput!): AlertAddPayload
+  AlertEdit(input: AlertEditInput!): AlertEditPayload
+  AlertDelete(input: AlertDeleteInput!): AlertDeletePayload
 }
 
 # An object with an ID
@@ -51,6 +288,16 @@ type PageInfo {
   endCursor: String
 }
 
+type Properties {
+  codigo: String
+  nome: String
+  descricao: String
+  source: String
+  endereco: String
+  bacia: String
+  numero: Float
+}
+
 # The root of all... queries
 type Query {
   # Fetches an object given its ID
@@ -61,6 +308,80 @@ type Query {
   me: User
   user(id: ID!): User
   users(after: String, first: Int, before: String, last: Int, search: String): UserConnection
+  adminUser(id: ID!): AdminUser
+  adminUsers(after: String, first: Int, before: String, last: Int, search: String): AdminUserConnection
+  alert(id: ID!): Alert
+  alerts(after: String, first: Int, before: String, last: Int, search: String): AlertConnection
+  station(id: String): Feature
+  stations(after: String, first: Int, before: String, last: Int): [Feature]
+  last_leituras(after: String, first: Int, before: String, last: Int): [Reader]
+  getWeather(city: String!): Weather
+}
+
+type Rain {
+  h: Float
+}
+
+type Reader {
+  # Data da aquisição do dado feita pela estação. Data/Hora UTC.
+  leitura: String
+
+  # Código da estação ( PK)
+  estacao: Feature
+
+  # Precipitação acumulada em 05 minutos
+  m05: Float
+
+  # Precipitação acumulada em 10 minutos
+  m10: Float
+
+  # Precipitação acumulada em 15 minutos
+  m15: Float
+
+  # Precipitação acumulada em 30 minutos
+  m30: Float
+
+  # Precipitação acumulada em 01 hora
+  h01: Float
+
+  # Precipitação acumulada em 06 horas
+  h06: Float
+
+  # Precipitação acumulada em 12 horas
+  h12: Float
+
+  # Precipitação acumulada em 24 horas
+  h24: Float
+
+  # Precipitação acumulada em 36 horas
+  h36: Float
+
+  # Precipitação acumulada em 48 horas
+  h48: Float
+
+  # Precipitação acumulada em 72 horas
+  h72: Float
+
+  # Precipitação acumulada em 96 horas
+  h96: Float
+
+  # Precipitação acumulada em 168 horas
+  h168: Float
+
+  # Precipitação acumulada no mês
+  mes: Float
+
+  #
+  #         Quando não houver precipitação: nullo,  
+  #         Se a estação registrar precipitação entre 0.2 mm e 5.0 mm dentro do período de 1 hora.: 'ch-fraca' 
+  #         Se a estação registrar precipitação entre 5.1 mm e 25.0 mm dentro do período de 1 hora.: 'ch-moderada'
+  #         Se a estação registrar precipitação entre 25.1 mm e 50.0 mm dentro do período de 1 hora.: 'ch-forte'
+  #         Se a estação registrar precipitação acima de 50 mm dentro do período de 1 hora.: 'ch-muito-forte'
+  #       
+  css_chuva: String
+
+  # False: Dado Atrasado, True: Dado Atual
+  is_delay: Boolean
 }
 
 input RegisterEmailInput {
@@ -74,6 +395,10 @@ type RegisterEmailPayload {
   token: String
   error: String
   clientMutationId: String
+}
+
+type Sys {
+  pod: String
 }
 
 # User data
@@ -103,4 +428,39 @@ type UserEdge {
 
   # A cursor for use in pagination
   cursor: String!
+}
+
+type Weather {
+  cod: String
+  message: Float
+  cnt: Int
+  list: [List]
+  city: City
+  fahrenheit_avg: Float
+  celcius_avg: Float
+  kelvin_avg: Float
+  fahrenheit_max_avg: Float
+  celcius_max_avg: Float
+  kelvin_max_avg: Float
+  pressure_avg: Float
+  humidity_avg: Float
+  sea_level_avg: Float
+  pressure: [Float]
+  humidity: [Float]
+  temp_farenheit: [Float]
+  temp_celcius: [Float]
+  temp_kelvin: [Float]
+  sea_level: [Float]
+}
+
+type WeatherList {
+  id: ID
+  main: String
+  description: String
+  icon: String
+}
+
+type Wind {
+  speed: Float
+  deg: Float
 }
